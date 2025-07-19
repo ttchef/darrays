@@ -12,6 +12,7 @@ typedef struct {
 } da_Array_uint;
 
 da_Array_uint *da_array_uint_init(size_t size);
+void da_array_uint_free(da_Array_uint *array);
 
 
 #endif

@@ -26,7 +26,7 @@ uninstall:
 	rm -rf /usr/local/lib/libleif.a 
 	rm -rf /usr/local/include/darray/
 
-example: lib/libdarray.a
+example: lib/libdarray.a install
 	$(CC) $(CFLAGS) example.c -o main -l:libdarray.a
 
 .PHONY: all clean install uninstall 

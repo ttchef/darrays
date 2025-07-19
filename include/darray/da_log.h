@@ -3,11 +3,14 @@
 #define DA_LOG_H 
 
 #include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
 
 typedef enum {
     DA_UNDEFINED = 1,
     DA_OK = 0,
     DA_ERROR = -1,
+    DA_INVALID_SIZE,
 } DA_RESULT;
 
 typedef struct {
@@ -26,13 +29,13 @@ extern da_ErrorCallback da_error_callback;
 
 #define DA_SET_ERROR(code, msg, ...) \
     do { \
-        if (da_error_log_enalbe) { \
+        if (da_error_log_enable) { \
             da_last_error.error_code = code; \
             da_last_error.function_name = __func__; \
             da_last_error.file_name = __FILE__; \
             da_last_error.line_number = __LINE__; \
             snprintf(da_last_error.message, sizeof(da_last_error.message), msg, ##__VA_ARGS__); \
-            if (da_error_callback) da_error_callback(da_last_error); \
+            if (da_error_callback) da_error_callback(&da_last_error); \
         } \
     } while(0)
 
