@@ -60,6 +60,24 @@ void da_array_uint_push_back(da_Array_uint *array, uint32_t value) {
     }
 }
 
+uint32_t da_array_uint_pop(da_Array_uint *array) {
+    if (!array) {
+        DA_SET_ERROR(DA_INVALID_INPUT, "Input Array is NULL");
+        return -1;
+    }
+
+    if (array->size == 0) {
+        DA_SET_ERROR(DA_INVALID_SIZE, "Array lenght is 0 when trying to pop!");
+        return -1;
+    }
+
+    array->size--;
+    uint32_t value = array->data[array->size];
+    array->data[array->size] = 0;
+
+    return value;
+}
+
 void da_array_uint_print(da_Array_uint *array) {
     if (!array) {
         DA_SET_ERROR(DA_INVALID_INPUT, "Input Array is NULL");

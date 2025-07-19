@@ -14,7 +14,9 @@ int main() {
         da_array_uint_push_back(array1, i);
     }
 
+    uint32_t value = da_array_uint_pop(array1);
     da_array_uint_print(array1);
+
 
     da_array_uint_free(array1);
 
