@@ -22,6 +22,10 @@ const char* da_error_string(DA_RESULT result) {
         case DA_UNDEFINED:          return "Undefinied";
         case DA_OK:                 return "Success";
         case DA_ERROR:              return "General Error";
+        case DA_INVALID_SIZE:       return "Invalid Array Size";
+        case DA_ALLOC_FAIL:         return "Allocating Fail";
+        case DA_INVALID_INPUT:      return "Invalid Input";
+        default:                    return "Unkown Error";
     }
 }
 

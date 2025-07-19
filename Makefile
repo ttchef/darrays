@@ -1,6 +1,6 @@
 
 CC = gcc
-CFLAGS = -O2 
+CFLAGS = -g
 
 SRC_FILES = $(wildcard src/*.c) 
 OBJ_FILES = $(SRC_FILES:.c=.o)

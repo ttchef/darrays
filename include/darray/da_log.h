@@ -10,7 +10,9 @@ typedef enum {
     DA_UNDEFINED = 1,
     DA_OK = 0,
     DA_ERROR = -1,
-    DA_INVALID_SIZE,
+    DA_INVALID_SIZE = -2,
+    DA_ALLOC_FAIL = -3,
+    DA_INVALID_INPUT = -4,
 } DA_RESULT;
 
 typedef struct {
