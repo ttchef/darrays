@@ -7,9 +7,9 @@ OBJ_FILES = $(SRC_FILES:.c=.o)
 
 all: lib/libdarray.a
 
-lib/libarray.a: $(OBJ_FILES)
+lib/libdarray.a: $(OBJ_FILES)
 	mkdir -p lib 
-	ar cr lib/libarray.a $(OBJ_FILES)
+	ar cr lib/libdarray.a $(OBJ_FILES)
 	rm -f $(OBJ_FILES)
 
 %.o: %.c 
@@ -25,6 +25,9 @@ install:
 uninstall:
 	rm -rf /usr/local/lib/libleif.a 
 	rm -rf /usr/local/include/darray/
+
+example: lib/libdarray.a
+	$(CC) $(CFLAGS) example.c -o main -l:libdarray.a
 
 .PHONY: all clean install uninstall 
 
