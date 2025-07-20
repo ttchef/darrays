@@ -43,7 +43,7 @@ void da_array_uint_push_back(da_Array_uint *array, uint32_t value) {
 
     if (array->size + 1 >= array->capacity) {
         size_t new_capacity = array->capacity * 2;
-        uint32_t* new_data = (uint32_t*)realloc(array->data, sizeof(uint32_t) *sizeof(uint32_t) * new_capacity);
+        uint32_t* new_data = (uint32_t*)realloc(array->data, sizeof(uint32_t) * new_capacity);
         if (!new_data) {
             DA_SET_ERROR(DA_ALLOC_FAIL, "Failed to realloc array data!");
             return;
@@ -100,3 +100,34 @@ void da_array_uint_fill(da_Array_uint *array, uint32_t value) {
         array->data[i] = value;
     }
 }
+
+void da_array_uint_assign_carray(da_Array_uint *array, uint32_t *carray, size_t size) {
+    if (!array || !carray) {
+        DA_SET_ERROR(DA_INVALID_INPUT, "Input Array is NULL");
+        return;
+    }
+
+    if (size < 1) {
+        DA_SET_ERROR(DA_INVALID_SIZE, "Trying to copy a 0 length array");
+        return;
+    }
+
+    if (array->capacity < size) {
+        size_t new_capacity = array->capacity * 2;
+        uint32_t* new_data = (uint32_t*)realloc(array->data, sizeof(uint32_t) * new_capacity);
+        if (!new_data) {
+            DA_SET_ERROR(DA_ALLOC_FAIL, "Failed to realloc array data!");
+            return;
+        }
+        array->data = new_data;
+        array->capacity = new_capacity;
+    }
+
+    // copy data
+    for (size_t i = 0; i < size; i++) {
+        array->data[i] = carray[i];
+    }
+
+    array->size = size;
+}
+

@@ -18,7 +18,7 @@ lib/libdarray.a: $(OBJ_FILES)
 clean:
 	rm -rf lib $(OBJ_FILES)
 
-install:
+install: lib/libdarray
 	cp lib/libdarray.a /usr/local/lib/ 
 	cp -r include/darray /usr/local/include/ 
 
