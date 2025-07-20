@@ -155,3 +155,35 @@ void da_array_uint_push_back_carray(da_Array_uint *array, uint32_t *carray, size
     array->size += size;
 }
 
+uint32_t *da_array_uint_ptr(da_Array_uint *array) {
+    if (!array) {
+        DA_SET_ERROR(DA_INVALID_INPUT, "Input Array is NULL");
+        return NULL;
+    }
+
+    if (!array->data) {
+        DA_SET_ERROR(DA_INVALID_INPUT, "Input Array data is NULL");
+        return NULL;
+    }
+    
+    return array->data;
+}
+
+uint32_t da_array_uint_size(da_Array_uint *array) {
+    if (!array) {
+        DA_SET_ERROR(DA_INVALID_INPUT, "Input Array is NULL");
+        return NULL;
+    }
+
+    return array->size;
+}
+
+uint32_t da_array_uint_capacity(da_Array_uint *array) {
+    if (!array) {
+        DA_SET_ERROR(DA_INVALID_INPUT, "Input Array is NULL");
+        return NULL;
+    }
+
+    return array->capacity;
+}
+

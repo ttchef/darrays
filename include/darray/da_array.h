@@ -25,5 +25,9 @@ void da_array_uint_fill(da_Array_uint *array, uint32_t value);
 void da_array_uint_assign_carray(da_Array_uint *array, uint32_t *carray, size_t size);
 void da_array_uint_push_back_carray(da_Array_uint *array, uint32_t *carray, size_t size);
 
+uint32_t *da_array_uint_ptr(da_Array_uint *array);
+uint32_t da_array_uint_size(da_Array_uint *array);
+uint32_t da_array_uint_capacity(da_Array_uint *array);
+
 #endif
 
