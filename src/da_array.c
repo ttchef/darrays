@@ -123,11 +123,35 @@ void da_array_uint_assign_carray(da_Array_uint *array, uint32_t *carray, size_t 
         array->capacity = new_capacity;
     }
 
-    // copy data
-    for (size_t i = 0; i < size; i++) {
-        array->data[i] = carray[i];
-    }
+    memcpy(array->data, carray, size * sizeof(uint32_t));
 
     array->size = size;
+}
+
+void da_array_uint_push_back_carray(da_Array_uint *array, uint32_t *carray, size_t size) {
+    if (!array || !carray) {
+        DA_SET_ERROR(DA_INVALID_INPUT, "Input Array is NULL");
+        return;
+    }
+
+    if (size < 1) {
+        DA_SET_ERROR(DA_INVALID_SIZE, "Trying to push_back a 0 length array");
+        return;
+    }
+
+    while (array->capacity < array->size + size) {
+        size_t new_capacity = array->capacity * 2;
+        uint32_t* new_data = (uint32_t*)realloc(array->data, sizeof(uint32_t) * new_capacity);
+        if (!new_data) {
+            DA_SET_ERROR(DA_ALLOC_FAIL, "Failed to realloc array data!");
+            return;
+        }
+        array->data = new_data;
+        array->capacity = new_capacity;
+    }
+
+    memcpy(array->data + array->size, carray, size * sizeof(uint32_t));
+
+    array->size += size;
 }
 
